@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
+    <link rel="stylesheet" href="app.css">
+    <title>Tailwind</title>
+</head>
+<body class="overflow-hidden relative dark:bg-slate-900 bg-white">
+    <!-- NavBar -->
+    <div class="nav-header px-16 mb-7 fixed mt-3 text-[#f68e3a] top-0 right-0 z-50 w-screen">
+        <div class="nav-components flex justify-between items-baseline">
+            <div class="brand-others flex w-fit items-baseline">
+                <h1 class="brand mr-20 font-extrabold text-3xl">Brands</h1>
+                <ul class="nav-links flex gap-5 uppercase text-base">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="/Categories">Token</a>
+                    </li>
+                    <li>
+                        <a href="/Blog">Blog</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <input style="display: none;" id="airinput" class="" placeholder="Invite By">
+                <a href="https://bscscan.com/token/0x7C82560505b981fAea9E8c11d5E0A04F2a0F01CA" class="mx-4 text-sm text-slate-900 dark:text-gray-400 font-bold">Contract-address: <span class="text-accents">0x7C82560505b981fAea9E8c11d5E0A04F2a0F01CA</span></a>
+                <button onclick="connect_wallet();"
+                    class="btn-shop py-2 px-10 bg-[#f68e3a] rounded-md hover:bg-white hover:text-black text-white font-bold leading-8 inline-block transition-all delay-100 ease-linear">Connect wallet</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of navbar -->
+    <div class=" mt-28">
+
+        <a href="javascript:getAirdrop();"
+        class="btn-shop py-2 px-10 bg-[#f68e3a] rounded-md hover:bg-white hover:text-black text-white font-bold leading-8 inline-block transition-all delay-100 ease-linear">Connect wallet</a>
+
+        <input type="button" value="Connect Wallet" onclick="connect_wallet()"/>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js"></script>
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script src="./js/web3.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/script.js"></script>
+    <script>
+        
+async function connect_wallet(){
+    if(window.ethereum){
+        await window.ethereum.request({
+            methods: "eth_requestAccounts"
+        });
+        window.web3 = new web3(window.ethereum);
+    }else{
+        console.log("No Wallet");
+    }
+}
+    </script>
+</body>
+</html>
