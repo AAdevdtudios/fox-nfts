@@ -10,6 +10,8 @@
       id="theme-styles"
     />
     <link rel="stylesheet" href="app.css" />
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Tailwind</title>
   </head>
   <body class="overflow-x-hidden relative bg-slate-900">
@@ -169,128 +171,64 @@
             </div>
         </div>
         <section id="about"
-            class="sliders-img px-5 md:px-16 md:py-10 w-screen h-full block md:grid gap-3 grid-cols-2">
+            class="sliders-img px-5 md:px-16 md:py-10 w-full h-full block md:grid gap-3 grid-cols-2">
             <div class="container p-2 mx-auto sm:p-4 text-gray-100">
-                <h2 class="mb-4 text-2xl font-semibold leading-tight">Invoices</h2>
-                <div class="overflow-x-auto">
+                <div class="flex w-full mb-2 gap-4">
+                    <img src="./images/medal.png" alt="" class="h-20 w-20">
+                    <div class="flex flex-col gap-2">
+                        <h2 class="text-lg font-semibold leading-tight">Current Deposit <br> & prize</h2>
+                        <span class="font-bold text-xl text-green-700/70">$5,200.22</span>    
+                    </div>
+                </div>
+                <div class="overflow-auto h-96">
+                    <div id="app">
                     <table class="min-w-full text-xs">
                         <colgroup>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
                             <col class="w-24">
+                            <col>
+                            <col>
+                            <col>
                         </colgroup>
                         <thead class="bg-gray-700">
                             <tr class="text-left">
                                 <th class="p-3">Days</th>
-                                <th class="p-3">Client</th>
-                                <th class="p-3">Issued</th>
-                                <th class="p-3">Due</th>
-                                <th class="p-3 text-right">Amount</th>
-                                <th class="p-3">Status</th>
+                                <th class="p-3">Wallet</th>
+                                <th class="p-3">Deposit</th>
+                                <th class="p-3">Reward</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b border-opacity-20 border-gray-700 bg-gray-900">
+                            <tr v-if="items" class="border-b border-opacity-20 border-gray-700 bg-gray-900" v-for="(item, index) in items" :key="index">
                                 <td class="p-3">
-                                    <p>97412378923</p>
-                                </td>
-                                <td class="p-3">
-                                    <p>Microsoft Corporation</p>
+                                    <p>{{item.days}}</p>
                                 </td>
                                 <td class="p-3">
-                                    <p>14 Jan 2022</p>
-                                    <p class="text-gray-400">Friday</p>
+                                    <p>{{item.wallet}}</p>
                                 </td>
                                 <td class="p-3">
-                                    <p>01 Feb 2022</p>
-                                    <p class="text-gray-400">Tuesday</p>
+                                    <p>{{item.deposit}}</p>
                                 </td>
-                                <td class="p-3 text-right">
-                                    <p>$15,792</p>
-                                </td>
-                                <td class="p-3 text-right">
-                                    <span class="px-3 py-1 font-semibold rounded-md bg-violet-400 text-gray-900">
-                                        <span>Pending</span>
-                                    </span>
+                                <td class="p-3">
+                                    <p>{{item.redraw}}</p>
                                 </td>
                             </tr>
-                            <tr class="border-b border-opacity-20 border-gray-700 bg-gray-900">
+                            <tr v-else class="border-b border-opacity-20 border-gray-700 bg-gray-900" v-for="(item, index) in items" :key="index">
                                 <td class="p-3">
-                                    <p>97412378923</p>
-                                </td>
-                                <td class="p-3">
-                                    <p>Tesla Inc.</p>
+                                    <p>{{item.days}}</p>
                                 </td>
                                 <td class="p-3">
-                                    <p>14 Jan 2022</p>
-                                    <p class="text-gray-400">Friday</p>
+                                    <p>{{item.wallet}}</p>
                                 </td>
                                 <td class="p-3">
-                                    <p>01 Feb 2022</p>
-                                    <p class="text-gray-400">Tuesday</p>
-                                </td>
-                                <td class="p-3 text-right">
-                                    <p>$275</p>
-                                </td>
-                                <td class="p-3 text-right">
-                                    <span class="px-3 py-1 font-semibold rounded-md bg-violet-400 text-gray-900">
-                                        <span>Pending</span>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr class="border-b border-opacity-20 border-gray-700 bg-gray-900">
-                                <td class="p-3">
-                                    <p>97412378923</p>
+                                    <p>{{item.deposit}}</p>
                                 </td>
                                 <td class="p-3">
-                                    <p>Coca Cola co.</p>
-                                </td>
-                                <td class="p-3">
-                                    <p>14 Jan 2022</p>
-                                    <p class="text-gray-400">Friday</p>
-                                </td>
-                                <td class="p-3">
-                                    <p>01 Feb 2022</p>
-                                    <p class="text-gray-400">Tuesday</p>
-                                </td>
-                                <td class="p-3 text-right">
-                                    <p>$8,950,500</p>
-                                </td>
-                                <td class="p-3 text-right">
-                                    <span class="px-3 py-1 font-semibold rounded-md bg-violet-400 text-gray-900">
-                                        <span>Pending</span>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr class="border-b border-opacity-20 border-gray-700 bg-gray-900">
-                                <td class="p-3">
-                                    <p>97412378923</p>
-                                </td>
-                                <td class="p-3">
-                                    <p>Nvidia Corporation</p>
-                                </td>
-                                <td class="p-3">
-                                    <p>14 Jan 2022</p>
-                                    <p class="text-gray-400">Friday</p>
-                                </td>
-                                <td class="p-3">
-                                    <p>01 Feb 2022</p>
-                                    <p class="text-gray-400">Tuesday</p>
-                                </td>
-                                <td class="p-3 text-right">
-                                    <p>$98,218</p>
-                                </td>
-                                <td class="p-3 text-right">
-                                    <span class="px-3 py-1 font-semibold rounded-md bg-violet-400 text-gray-900">
-                                        <span>Pending</span>
-                                    </span>
+                                    <p>{{item.redraw}}</p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
                 </div>
             </div>
     
@@ -299,11 +237,10 @@
                 <h1 class="font-extrabold w-full text-white bg-slate-600 text-center p-5 text-xl leading-relaxed">
                     Token Sale
                 </h1>
-                <p class="text-center">Airdrop & Pre-Sale Ends in</p>
-                <p class="text-center">Listing Price: 1 EtherBTC = 0.00001 USD
-                    Buy EtherBTC Token
-                    Min Buy 0.01 BNB = 100,000,000 EtherBTC
-                    Max Buy 5 BNB = 50,000,000,000 EtherBTC</p>
+                <p class="text-center">Listing Price: 1 $FOXNFTS = 0.00001 USD
+                    Buy $FOXNFTS Token
+                    Min Buy 0.01 BNB = 100,000,000 $FOXNFTS
+                    Max Buy 5 BNB = 50,000,000,000 $FOXNFTS</p>
                 <div class=" rounded-lg h-fit w-full flex flex-col justify-center items-center px-10 py-7 md:px-16">
                     <h3 class="text-2xl text-white font-bold">Buy Token</h3>
                     <br>
@@ -322,7 +259,7 @@
                       >Claim token</button
                     >
                 </div>
-                <p>BUY UPTO 0.7 BNB WORTH OF ETHERBTC TOKEN AND EARN 1 BNB EVERY 4 DAYS FROM REWARDS LIQUIDITY</p>
+                <p class="text-center">BUY UPTO 0.7 BNB WORTH OF $FOXNFTS TOKEN AND EARN 1 BNB EVERY 4 DAYS FROM REWARDS LIQUIDITY</p>
             </div>
         </section>
         
@@ -335,7 +272,7 @@
             </div>
             <div class="flex flex-col h-fit gap-4">
                 <h4>Decimal</h4>
-                <h4 class="text-slate-400">8</h4>
+                <h4 class="text-slate-400">18</h4>
             </div>
             <div class="flex flex-col h-fit gap-4">
                 <h4>Ticker</h4>
@@ -348,7 +285,7 @@
             </div>
             <div class="flex flex-col justify-start h-fit gap-4">
                 <h4>Number of tokens for sale</h4>
-                <h4 class="text-slate-400">125,000,000 $Nomox (5%)</h4>
+                <h4 class="text-slate-400">125,000,000 $FOXNFTS (5%)</h4>
             </div>
             <div class="flex flex-col h-fit gap-4">
                 <h4>End</h4>
@@ -356,7 +293,7 @@
             </div>
             <div class="flex flex-col h-fit gap-4">
                 <h4>Token Price :</h4>
-                <h4 class="text-slate-400">1 $Nomox = $0.05</h4>
+                <h4 class="text-slate-400">1 $FOXNFTS = $0.05</h4>
             </div>
             <div class="flex flex-col h-fit gap-4">
                 <h4>Acceptable currencies</h4>
@@ -377,6 +314,9 @@
                 <a href="https://bscscan.com/token/0x7C82560505b981fAea9E8c11d5E0A04F2a0F01CA" class=" text-[#f68e3a]">0x7C82560505b981fAea9E8c11d5E0A04F2a0F01CA</a>
             </div>
         </div>
+    <script src="./data.json"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js"></script>
     <script src="./js/jquery-3.6.1.min.js"></script>
